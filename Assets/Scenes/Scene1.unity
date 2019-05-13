@@ -3405,6 +3405,18 @@ Prefab:
       propertyPath: inkBar
       value: 
       objectReference: {fileID: 1165848505}
+    - target: {fileID: 4696862081459808, guid: ae274fd053b3bcb498083dcd43e05eb5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696862081459808, guid: ae274fd053b3bcb498083dcd43e05eb5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696862081459808, guid: ae274fd053b3bcb498083dcd43e05eb5, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae274fd053b3bcb498083dcd43e05eb5, type: 2}
   m_IsPrefabAsset: 0

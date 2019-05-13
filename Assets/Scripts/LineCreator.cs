@@ -10,7 +10,7 @@ public class LineCreator : MonoBehaviour
 
     public LayerMask mask;
 
-    Vector3 mousePos;
+    Vector3 touchPos;
 
     [HideInInspector]
     public Line activeLine;
@@ -25,7 +25,11 @@ public class LineCreator : MonoBehaviour
 
     void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+#if UNITY_EDITOR
+        touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+#else
+            touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+#endif
         /*if (Input.GetMouseButtonDown(0)/*(Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
         {
             Debug.Log("shot ray");
@@ -46,9 +50,14 @@ public class LineCreator : MonoBehaviour
                 activeLine = null;
             }
         }*/
-
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
+#else
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+#endif
             if (player.currentInk > 0 && activeLine == null && Obstruction() == false)
             {
                 GameObject lineGO = Instantiate(linePrefab);
@@ -61,22 +70,29 @@ public class LineCreator : MonoBehaviour
 
         if (activeLine != null)
         {
-            activeLine.UpdateLine(mousePos);
+            activeLine.UpdateLine(touchPos);
         }
-
-        if (activeLine != null && (Input.GetMouseButtonUp(0) || player.currentInk <= 0))
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonUp(0) || player.currentInk <= 0)
         {
-            if (firstLine == false)
-                player.PlayGame();
+#else
+        if (Input.touchCount == 0 || player.currentInk <= 0)
+        {
+#endif
+            if (activeLine != null)
+            {
+                if (firstLine == false)
+                    player.PlayGame();
 
-            firstLine = true;
-            DisableLine();
+                firstLine = true;
+                DisableLine();
+            }
         }
     }
 
     bool Obstruction()
     {
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 100, mask);
+        RaycastHit2D hit = Physics2D.Raycast(touchPos, Vector2.zero, 100, mask);
         if (hit.collider != null)
         {
             return true;

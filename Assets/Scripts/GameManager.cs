@@ -2,19 +2,9 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SwitchScenes : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    [HideInInspector]
-    public bool gameIsPaused = false;
-
     public GameObject UI;
-
-    public GameObject pauseUI;
-
-    public virtual void Start()
-    {            
-        
-    }
 
     public void ToggleButtons()
     {
@@ -25,6 +15,7 @@ public class SwitchScenes : MonoBehaviour
         }
     }
 
+    #region Scenemanagement
     public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -53,9 +44,7 @@ public class SwitchScenes : MonoBehaviour
 
     public void RestartGame()
     {
-        if (gameIsPaused)
-            Time.timeScale = 1;
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    #endregion
 }

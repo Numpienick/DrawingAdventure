@@ -21,7 +21,6 @@ public class Line : MonoBehaviour
 
     public List<Collider2D> colliders = new List<Collider2D>();
 
-
     int i = 0;
 
     void Start()
@@ -30,17 +29,17 @@ public class Line : MonoBehaviour
         player = FindObjectOfType<Player>();
     }
 
-    public void UpdateLine(Vector2 mousePos)
+    public void UpdateLine(Vector2 touchPos)
     {
         if (points == null)
         {
             points = new List<Vector2>();
-            SetPoint(mousePos);
+            SetPoint(touchPos);
             return;
         }
 
-        if (Vector2.Distance(points.Last(), mousePos) > .1f && AllowedToSpawn(mousePos) == true)
-            SetPoint(mousePos);
+        if (Vector2.Distance(points.Last(), touchPos) > .1f && AllowedToSpawn(touchPos) == true)
+            SetPoint(touchPos);
 
         //start.position = ;
         //target.position = ;
@@ -68,19 +67,19 @@ public class Line : MonoBehaviour
         }
     }
 
-    bool AllowedToSpawn(Vector2 mousePos)
+    bool AllowedToSpawn(Vector2 touchPos)
     {
         Vector2 lastPos = new Vector2(points.Last().x, points.Last().y);
-        RaycastHit2D hit = Physics2D.Linecast(lastPos, new Vector2(mousePos.x, mousePos.y), layerMask);
+        RaycastHit2D hit = Physics2D.Linecast(lastPos, new Vector2(touchPos.x, touchPos.y), layerMask);
 
         if (hit.collider != null)
         {
-            Debug.DrawLine(lastPos, new Vector2(mousePos.x, mousePos.y), Color.red, 5f);
+            Debug.DrawLine(lastPos, new Vector2(touchPos.x, touchPos.y), Color.red, 5f);
             return false;
         }
         else
         {
-            Debug.DrawLine(lastPos, new Vector2(mousePos.x, mousePos.y), Color.red, 5f);
+            Debug.DrawLine(lastPos, new Vector2(touchPos.x, touchPos.y), Color.red, 5f);
             return true;
         }
 

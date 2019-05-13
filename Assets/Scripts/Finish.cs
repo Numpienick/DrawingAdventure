@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Finish : SwitchScenes
+public class Finish : GameManager
 {
     public GameObject finishUI;
 
-    public override void Start()
+    public void Start()
     {
-        base.Start();
         finishUI.SetActive(false);
     }
 
@@ -20,10 +19,5 @@ public class Finish : SwitchScenes
             finishUI.SetActive(true);
             ToggleButtons();
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

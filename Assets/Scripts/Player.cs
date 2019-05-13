@@ -5,28 +5,22 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class Player : SwitchScenes
+public class Player : MonoBehaviour
 {
-    private float ink;
-
     public float currentInk = 100;
+
     public float maxInk = 50;
-
-    private float minX, maxX, minY, maxY;
-
-    private int maxStars = 3;
-
-    private Rigidbody2D rb;
-
     public Slider inkBar;
-
-
     public GameObject border;
 
+    float ink;
+    float minX, maxX, minY, maxY;
+    int maxStars = 3;
 
-    public override void Start()
+    Rigidbody2D rb;
+
+    public void Start()
     {
-        base.Start();
         string levelCount = "";
         string currentLevelName = SceneManager.GetActiveScene().name;
         for (int i = 0; i < currentLevelName.Length; i++)
@@ -37,9 +31,6 @@ public class Player : SwitchScenes
         inkBar.GetComponentInChildren<TextMeshProUGUI>().SetText("Level " + levelCount);
 
         rb = GetComponent<Rigidbody2D>();
-
-        if (pauseUI)
-            pauseUI.SetActive(false);
 
         currentInk = maxInk;
 
@@ -75,22 +66,6 @@ public class Player : SwitchScenes
     public void DrainInk(float value)
     {
         currentInk -= value;
-    }
-
-    public void Resume()
-    {
-        pauseUI.SetActive(false);
-        ToggleButtons();
-        Time.timeScale = 1f;
-        gameIsPaused = false;
-    }
-
-    public void Pause()
-    {
-        pauseUI.SetActive(true);
-        ToggleButtons();
-        Time.timeScale = 0f;
-        gameIsPaused = true;
     }
 
     public void PlayGame()
