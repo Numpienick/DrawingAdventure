@@ -9,6 +9,7 @@ public class LineCreator : MonoBehaviour
     private Player player;
 
     public LayerMask mask;
+    Touch touch;
 
     Vector3 touchPos;
 
@@ -27,8 +28,6 @@ public class LineCreator : MonoBehaviour
     {
 #if UNITY_EDITOR
         touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-#else
-            touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 #endif
         /*if (Input.GetMouseButtonDown(0)/*(Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
         {
@@ -54,9 +53,10 @@ public class LineCreator : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 #else
-        if (Input.touchCount == 1)
+        touch = Input.GetTouch(0);
+        touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+        if (touch.phase == TouchPhase.Began)
         {
-            Touch touch = Input.GetTouch(0);
 #endif
             if (player.currentInk > 0 && activeLine == null && Obstruction() == false)
             {
@@ -71,16 +71,13 @@ public class LineCreator : MonoBehaviour
         if (activeLine != null)
         {
             activeLine.UpdateLine(touchPos);
-        }
 #if UNITY_EDITOR
-        if (Input.GetMouseButtonUp(0) || player.currentInk <= 0)
-        {
-#else
-        if (Input.touchCount == 0 || player.currentInk <= 0)
-        {
-#endif
-            if (activeLine != null)
+            if (Input.GetMouseButtonUp(0) || player.currentInk <= 0)
             {
+#else
+            if (touch.phase == TouchPhase.Ended || player.currentInk <= 0)
+            {
+#endif
                 if (firstLine == false)
                     player.PlayGame();
 

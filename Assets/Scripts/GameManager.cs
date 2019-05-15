@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class GameManager : MonoBehaviour
         {
             buttons[i].enabled = !buttons[i].enabled;
         }
+    }
+
+    public static void SetDebugText(string text)
+    {
+        FindObjectOfType<DEBUG>().GetComponent<TextMeshProUGUI>().text = text;
     }
 
     #region Scenemanagement

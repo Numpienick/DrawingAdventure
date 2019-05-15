@@ -12,12 +12,15 @@ public class Player : MonoBehaviour
     public float maxInk = 50;
     public Slider inkBar;
     public GameObject border;
+    public GameObject star;
+
+    public List<GameObject> stars = new List<GameObject>();
 
     float ink;
     float minX, maxX, minY, maxY;
     int maxStars = 3;
-
     Rigidbody2D rb;
+
 
     public void Start()
     {
@@ -33,6 +36,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         currentInk = maxInk;
+
+        SpawnStars();
 
         ///This places borders around the level, but I found out that this isn't actually needed
         /*Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
@@ -51,10 +56,12 @@ public class Player : MonoBehaviour
     {
         inkBar.value = CalculateInk();
 
-        //If amount of ink is under a certain treshold, reduce the amount of stars that the player can achieve for passing the level
-        if (maxStars > 1 && currentInk <= (maxInk / 3 * maxStars - 1))
+        //If the amount of ink is under a certain treshold, 
+        //reduce the amount of stars that the player can achieve for passing the level
+        if (maxStars > 1 && currentInk <= ((maxInk / 3) * (maxStars - 1)))
         {
             maxStars = maxStars - 1;
+            RemoveStars();
         }
     }
 
@@ -71,5 +78,23 @@ public class Player : MonoBehaviour
     public void PlayGame()
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    void SpawnStars()
+    {
+        Transform drainBar = GameObject.Find("Drain Bar").transform;
+        float xOffset = 300;
+        for (int i = 0; i < maxStars; i++)
+        {
+            GameObject starObject = Instantiate(star, new Vector3(drainBar.position.x + xOffset, drainBar.position.y, transform.position.z), Quaternion.identity, drainBar);
+            stars.Add(starObject);
+            xOffset += 50;
+        }
+    }
+
+    void RemoveStars()
+    {
+        Destroy(stars[maxStars]);
+        stars.RemoveAt(maxStars);
     }
 }
