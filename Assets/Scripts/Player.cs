@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class Player : MonoBehaviour
 
     public float maxInk = 50;
     public Slider inkBar;
-    public GameObject border;
     public GameObject star;
 
     public List<GameObject> stars = new List<GameObject>();
@@ -78,6 +78,10 @@ public class Player : MonoBehaviour
     public void PlayGame()
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
+        Finish finish = FindObjectOfType<Finish>();
+
+        if (finish.dynamicRB == true)
+            finish.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
     void SpawnStars()
@@ -97,4 +101,26 @@ public class Player : MonoBehaviour
         Destroy(stars[maxStars]);
         stars.RemoveAt(maxStars);
     }
+
+    #region Scenemanagement
+    public void LoadSelectedLevel()
+    {
+        GameManager.instance.LoadSelectedLevel();
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void PreviousLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    #endregion
 }

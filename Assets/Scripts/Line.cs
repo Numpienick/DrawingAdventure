@@ -5,23 +5,14 @@ using UnityEngine.EventSystems;
 
 public class Line : MonoBehaviour
 {
-    public LineRenderer lineRenderer;
-    public EdgeCollider2D edgeCol;
-
-    //private Transform start;
-    // private Transform target;
-
-    private Player player;
-
-    List<Vector2> points;
-
-    public LayerMask layerMask;
-
     public Rigidbody2D rb;
-
+    public LayerMask layerMask;
+    public LineRenderer lineRenderer;
     public List<Collider2D> colliders = new List<Collider2D>();
 
     int i = 0;
+    Player player;
+    List<Vector2> points;
 
     void Start()
     {
@@ -40,14 +31,6 @@ public class Line : MonoBehaviour
 
         if (Vector2.Distance(points.Last(), touchPos) > .1f && AllowedToSpawn(touchPos) == true)
             SetPoint(touchPos);
-
-        //start.position = ;
-        //target.position = ;
-
-        // capsule.
-
-        //       capsule.transform.position = start.position + (target.position - start.position);
-        // capsule.size = new Vector2(points.Last().x, points.Last().y) - new Vector2(points[0].x, points[0].y) - new Vector2(points[0].x, points[0].y);
     }
 
     void SetPoint(Vector2 point)
@@ -105,8 +88,6 @@ public class Line : MonoBehaviour
         Vector2 midPoint = (startPoint + endPoint) / 2;
 
         lineCollider.transform.position = midPoint;
-
-       // lineCollider.gameObject.layer = 9;
 
         float angle = Mathf.Atan2((endPoint.y - startPoint.y), (endPoint.x - startPoint.x));
 

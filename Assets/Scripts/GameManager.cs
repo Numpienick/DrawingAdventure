@@ -1,35 +1,32 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject UI;
+    public static GameManager instance;
+    public int starCount = 0;
+    public List<LevelInfo> levels = new List<LevelInfo>();
 
-    public void ToggleButtons()
+    void Start()
     {
-        Button[] buttons = UI.GetComponentsInChildren<Button>();
-        for (int i = 0; i < buttons.Length; i++)
+        GameManager[] gameManagers = FindObjectsOfType<GameManager>();
+        if (gameManagers.Length > 1)
         {
-            buttons[i].enabled = !buttons[i].enabled;
+            Destroy(gameObject);
+            return;
         }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    public static void SetDebugText(string text)
+    public void LoadSelectedLevel()
     {
-        FindObjectOfType<DEBUG>().GetComponent<TextMeshProUGUI>().text = text;
-    }
-
-    #region Scenemanagement
-    public void NextLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void PreviousLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        EventSystem eventSystem = EventSystem.current;
+        string buttonName = eventSystem.currentSelectedGameObject.name;
+        SceneManager.LoadScene(buttonName);
     }
 
     public void QuitGame()
@@ -37,20 +34,19 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenu()
+    public LevelInfo GetLevelInList(string levelName)
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        for (int i = 0; i < levels.Count; i++)
+        {
+            if (levels[i].levelName == levelName)
+                return levels[i];
+        }
+        return null;
     }
+}
 
-    public void SelectLevel()
-    {
-        SceneManager.LoadScene("SelectLevel");
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    #endregion
+public class LevelInfo
+{
+    public string levelName;
+    public int starsReceived;
 }

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Finish : GameManager
+public class Finish : MonoBehaviour
 {
     public GameObject finishUI;
+    public bool dynamicRB = false;
 
     public void Start()
     {
@@ -24,12 +25,30 @@ public class Finish : GameManager
                 children.Add(img);
             }
 
-            for (int i = 0; i < player.stars.Count; i++)
+            int starsWon = player.stars.Count;
+            for (int i = 0; i < starsWon; i++)
             {
                 children[i].sprite = player.star.GetComponentInChildren<Image>().sprite;
             }
 
-            ToggleButtons();
+            string thisLevelName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            LevelInfo thisLevel = GameManager.instance.GetLevelInList(thisLevelName);
+
+            if (thisLevel == null)
+            {
+                GameManager.instance.levels.Add(new LevelInfo
+                {
+                    levelName = thisLevelName,
+                    starsReceived = starsWon
+                });
+                GameManager.instance.starCount += starsWon;
+            }
+            else if (thisLevel.starsReceived < starsWon)
+            {
+                LevelInfo thisLevelInGameManager = GameManager.instance.GetLevelInList(thisLevelName);
+                GameManager.instance.starCount += (starsWon - thisLevelInGameManager.starsReceived);
+                thisLevelInGameManager.starsReceived = starsWon;
+            }
         }
     }
 }

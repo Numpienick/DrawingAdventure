@@ -5,20 +5,17 @@ using UnityEngine.EventSystems;
 
 public class LineCreator : MonoBehaviour
 {
-    public GameObject linePrefab;
-    private Player player;
-
-    public LayerMask mask;
-    Touch touch;
-
-    Vector3 touchPos;
-
     [HideInInspector]
     public Line activeLine;
+    public GameObject linePrefab;
+    public LayerMask mask;
 
     int j = 0;
-
     bool firstLine = false;
+    private Player player;
+    Vector3 touchPos;
+    Touch touch;
+    
     public void Start()
     {
         player = FindObjectOfType<Player>();
@@ -29,26 +26,7 @@ public class LineCreator : MonoBehaviour
 #if UNITY_EDITOR
         touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 #endif
-        /*if (Input.GetMouseButtonDown(0)/*(Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
-        {
-            Debug.Log("shot ray");
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 100, mask);
-            if (hit.collider != null)
-            {
-                Debug.Log("Something Hit");               
-            }
-            //if (Physics2D.Raycast(raycast, out raycastHit, 100, mask, QueryTriggerInteraction.Collide))
-        }*/
 
-        /*if (Input.GetMouseButton(0))
-        {
-            Obstruction();
-            if (Obstruction() == true)
-            {
-                activeLine = null;
-            }
-        }*/
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {

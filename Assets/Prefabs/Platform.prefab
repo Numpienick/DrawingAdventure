@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4734860656689150}
   - component: {fileID: 212309442521933318}
   - component: {fileID: 50495089252433826}
-  - component: {fileID: 114474588757743254}
   - component: {fileID: 61439105798278032}
   m_Layer: 8
   m_Name: Platform
@@ -82,23 +81,12 @@ BoxCollider2D:
     oldSize: {x: 2.56, y: 0.32}
     newSize: {x: 2.56, y: 0.32}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 2.56, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &114474588757743254
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1320758299084612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459682ffc00d61e4b884818b9cd6f253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212309442521933318
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -138,7 +126,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 2.56, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0

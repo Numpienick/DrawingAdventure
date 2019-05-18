@@ -73,12 +73,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bad08cfecad33546ae3f031c72bd4a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 120166597986212902}
-  edgeCol: {fileID: 0}
+  rb: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 790
-  rb: {fileID: 0}
+  lineRenderer: {fileID: 120166597986212902}
   colliders: []
 --- !u!120 &120166597986212902
 LineRenderer:
