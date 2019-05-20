@@ -16,7 +16,6 @@ public class UIManager : SceneManagement
         string currentLevelName = SceneManager.GetActiveScene().name;
         int levelCount;
         int.TryParse(new string(currentLevelName.Replace("Level", string.Empty).ToCharArray()), out levelCount);
-        levelCount += 1;
         levelCountText.SetText("Level " + levelCount);
     }
     void Update()
