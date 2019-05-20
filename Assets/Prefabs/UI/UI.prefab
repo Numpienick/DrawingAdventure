@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkText: {fileID: 114124432760712166}
-  levelCountText: {fileID: 114124432760712166}
+  levelCountText: {fileID: 114690029158858794}
 --- !u!114 &114525070483627256
 MonoBehaviour:
   m_ObjectHideFlags: 1
