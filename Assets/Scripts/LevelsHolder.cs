@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelsHolder : MonoBehaviour
 {
-
     void Start()
     {
         Debug.Log(GameManager.instance.starCount);
@@ -15,13 +14,17 @@ public class LevelsHolder : MonoBehaviour
         foreach (Transform child in transform)
         {
             levelButtons.Add(child.GetComponent<LevelButton>());
+            //For level 2
             if (i == 1)
             {
                 levelButtons[i].ActivateButton(i + 1);
+                GameManager.instance.AddLevelToList(levelButtons[i].name, 0, i + 1);
             }
+            //For all levels after level 2
             else if (i > 0)
             {
                 levelButtons[i].ActivateButton(i + 2);
+                GameManager.instance.AddLevelToList(levelButtons[i].name, 0, i + 2);
             }
             i++;
         }

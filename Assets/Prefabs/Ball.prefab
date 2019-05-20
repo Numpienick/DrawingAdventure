@@ -90,10 +90,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInk: 20
-  maxInk: 20
+  maxInk: 36
   inkBar: {fileID: 0}
-  border: {fileID: 1399217217827998, guid: fe83264334f16474cafc63dfc9816cb9, type: 2}
   star: {fileID: 1262991233985384, guid: 5f79520aa13d40b4da5c85a83a3a9f4c, type: 2}
+  stars: []
 --- !u!212 &212248952858904808
 SpriteRenderer:
   m_ObjectHideFlags: 1

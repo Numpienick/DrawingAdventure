@@ -393,16 +393,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 140555561}
   m_CullTransparentMesh: 0
---- !u!1 &184906939
+--- !u!1 &150768024
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 184906942}
-  - component: {fileID: 184906941}
-  - component: {fileID: 184906940}
+  - component: {fileID: 150768027}
+  - component: {fileID: 150768026}
+  - component: {fileID: 150768025}
+  - component: {fileID: 150768028}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -410,19 +411,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &184906940
+--- !u!81 &150768025
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 184906939}
+  m_GameObject: {fileID: 150768024}
   m_Enabled: 1
---- !u!20 &184906941
+--- !u!20 &150768026
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 184906939}
+  m_GameObject: {fileID: 150768024}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -457,12 +458,12 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &184906942
+--- !u!4 &150768027
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 184906939}
+  m_GameObject: {fileID: 150768024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -470,6 +471,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &150768028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150768024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeec909a30309294b816161dfda257a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maintainWidth: 1
+  adaptPosition: 0
 --- !u!1 &752280030
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf62cfed5e8ab04db50ddb50f0a71d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starCount: 0
 --- !u!4 &1349629261
 Transform:
   m_ObjectHideFlags: 0

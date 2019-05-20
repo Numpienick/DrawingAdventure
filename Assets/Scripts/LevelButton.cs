@@ -8,7 +8,6 @@ public class LevelButton : MonoBehaviour
     {
         if (GameManager.instance.starCount >= starsRequired)
         {
-            Debug.Log("stars required: " + starsRequired);
             GetComponent<Button>().interactable = true;
         }
     }

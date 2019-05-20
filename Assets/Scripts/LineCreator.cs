@@ -15,7 +15,7 @@ public class LineCreator : MonoBehaviour
     private Player player;
     Vector3 touchPos;
     Touch touch;
-    
+
     public void Start()
     {
         player = FindObjectOfType<Player>();
@@ -86,6 +86,8 @@ public class LineCreator : MonoBehaviour
             collider.gameObject.layer = 9;
             collider.isTrigger = false;
         }
+        if (player.currentInk < 0)
+            player.currentInk = 0;
         activeLine = null;
     }
 }

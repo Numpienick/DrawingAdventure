@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -21,18 +18,8 @@ public class Player : MonoBehaviour
     int maxStars = 3;
     Rigidbody2D rb;
 
-
     public void Start()
     {
-        string levelCount = "";
-        string currentLevelName = SceneManager.GetActiveScene().name;
-        for (int i = 0; i < currentLevelName.Length; i++)
-        {
-            if (char.IsDigit(currentLevelName[i]))
-                levelCount += currentLevelName[i];
-        }
-        inkBar.GetComponentInChildren<TextMeshProUGUI>().SetText("Level " + levelCount);
-
         rb = GetComponent<Rigidbody2D>();
 
         currentInk = maxInk;
@@ -65,7 +52,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    float CalculateInk()
+    public float CalculateInk()
     {
         return currentInk / maxInk;
     }
@@ -101,26 +88,4 @@ public class Player : MonoBehaviour
         Destroy(stars[maxStars]);
         stars.RemoveAt(maxStars);
     }
-
-    #region Scenemanagement
-    public void LoadSelectedLevel()
-    {
-        GameManager.instance.LoadSelectedLevel();
-    }
-
-    public void NextLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void PreviousLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    #endregion
 }
