@@ -346,7 +346,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1349629260}
+      - m_Target: {fileID: 2049170599}
         m_MethodName: LoadSelectedLevel
         m_Mode: 1
         m_Arguments:
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1349629260}
+      - m_Target: {fileID: 2049170599}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 2049170597}
   - component: {fileID: 2049170596}
   - component: {fileID: 2049170595}
+  - component: {fileID: 2049170599}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1032,3 +1033,16 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2049170599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2049170594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0772c6863edced44fbb0366871020a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkText: {fileID: 0}
+  levelCountText: {fileID: 0}
