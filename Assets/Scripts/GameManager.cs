@@ -22,11 +22,6 @@ public class GameManager : SceneManagement
         AddLevelToList("Level1", 0, 0);
     }    
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
     public void AddLevelToList(string levelName, int starsReceived, int starsRequired)
     {
         levels.Add(new LevelInfo

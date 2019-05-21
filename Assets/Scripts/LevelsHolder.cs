@@ -7,7 +7,6 @@ public class LevelsHolder : MonoBehaviour
 {
     void Start()
     {
-        Debug.Log(GameManager.instance.starCount);
         List<LevelButton> levelButtons = new List<LevelButton>();
 
         int i = 0;
