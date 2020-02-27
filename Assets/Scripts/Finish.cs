@@ -25,10 +25,10 @@ public class Finish : MonoBehaviour
 
             LevelInfo thisLevel = GameManager.instance.GetLevelInList(currentLevelName);
 
-            if (thisLevel.starsReceived < starsWon || starsWon == 0)
+            if (thisLevel.StarsWon < starsWon || starsWon == 0)
             {
-                GameManager.instance.starCount += (starsWon - thisLevel.starsReceived);
-                thisLevel.starsReceived = starsWon;
+                GameManager.instance.starCount += (starsWon - thisLevel.StarsWon);
+                thisLevel.StarsWon = starsWon;
             }
             finishUI.Finished(currentLevelName, starsWon);
         }

@@ -27,7 +27,7 @@ public class FinishUIManager : SceneManagement
         nextLevelInt += 1;
 
         LevelInfo nextLevel = GameManager.instance.GetLevelInList(string.Format("Level{0}", nextLevelInt));
-        if (GameManager.instance.starCount < nextLevel.starsRequired)
+        if (GameManager.instance.starCount < nextLevel.StarsRequired)
         {
             holderObj.Find("Next Level").GetComponent<Button>().interactable = false;
         }

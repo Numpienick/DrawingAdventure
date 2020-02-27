@@ -27,6 +27,7 @@ public class LevelsHolder : MonoBehaviour
             }
             i++;
         }
+        JsonHandler.CreateJsonFile();
     }
 
     public void LoadSelectedLevel()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -6,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : SceneManagement
 {
     public static GameManager instance;
+    public List<LevelInfo> levels { get; private set; }
     public int starCount = 0;
-    public List<LevelInfo> levels = new List<LevelInfo>();
     void Start()
     {
         GameManager[] gameManagers = FindObjectsOfType<GameManager>();
@@ -20,57 +21,26 @@ public class GameManager : SceneManagement
         DontDestroyOnLoad(gameObject);
 
         AddLevelToList("Level1", 0, 0);
-    }    
+    }
 
-    public void AddLevelToList(string levelName, int starsReceived, int starsRequired)
+    public void AddLevelToList(string levelName, int starsWon, int starsRequired)
     {
-        levels.Add(new LevelInfo
+        LevelInfo tempLevel = new LevelInfo
         {
-            levelName = levelName,
-            starsReceived = starsReceived,
-            starsRequired = starsRequired
-        });
+            LevelName = levelName,
+            StarsWon = starsWon,
+            StarsRequired = starsRequired
+        };
+        levels.Add(tempLevel);
     }
 
     public LevelInfo GetLevelInList(string levelName)
     {
         for (int i = 0; i < levels.Count; i++)
         {
-            if (levels[i].levelName == levelName)
+            if (levels[i].LevelName == levelName)
                 return levels[i];
         }
         return null;
-    }
-}
-
-public class LevelInfo
-{
-    public string levelName;
-    public int starsReceived;
-    public int starsRequired;
-}
-
-public class SceneManagement : MonoBehaviour
-{
-    public void NextLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void LoadSelectedLevel()
-    {
-        EventSystem eventSystem = EventSystem.current;
-        string buttonName = eventSystem.currentSelectedGameObject.name;
-        SceneManager.LoadScene(buttonName);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 }

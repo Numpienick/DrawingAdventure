@@ -27,15 +27,15 @@ public class Player : MonoBehaviour
         SpawnStars();
 
         ///This places borders around the level, but I found out that this isn't actually needed
-        /*Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
-
-        for (int i = 0; i < 4; ++i)
-        {
-            GameObject p = Instantiate(border);
-            p.name = "Border " + i.ToString();
-            p.transform.position = -planes[i].normal * planes[i].distance;
-            p.transform.rotation = Quaternion.FromToRotation(Vector3.left, planes[i].normal);
-        }*/
+//        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+//
+//        for (int i = 0; i < 4; ++i)
+//        {
+//            GameObject p = Instantiate(border);
+//            p.name = "Border " + i.ToString();
+//            p.transform.position = -planes[i].normal * planes[i].distance;
+//            p.transform.rotation = Quaternion.FromToRotation(Vector3.left, planes[i].normal);
+//        }
         ///
     }
 
