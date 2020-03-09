@@ -15,7 +15,6 @@ public class JsonHandler
             File.OpenWrite(jsonFile);
             File.WriteAllText(jsonFile, jsonString);
         }
-        else
         {
             CreateJsonFile();
         }
